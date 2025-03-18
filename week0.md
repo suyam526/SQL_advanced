@@ -13,10 +13,10 @@
 
 ### 15.2.15.2 : 서브쿼리로 COMPARSIONS 쓰기
 **비교 연산자로 비교**
-```=   >   <  >=   <=   <>   !=   <=>```
-예를 들어,
-```... WHERE 'a' = (SELECT column1 FROM t1)```
-또는
+```=   >   <  >=   <=   <>   !=   <=>```<br/>
+예를 들어,<br/>
+```... WHERE 'a' = (SELECT column1 FROM t1)```<br/>
+또는<br/>
 ```... LIKE (subquery)```
 
 <br/>
