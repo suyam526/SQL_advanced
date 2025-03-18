@@ -115,3 +115,29 @@ WHERE day IN (
 );
 ```
 
+
+----------
+# 📖 MYSQL 공식문서 정리
+## WITH 표현식
+```
+WITH
+  cte1 AS (SELECT a, b FROM table1),
+  cte2 AS (SELECT c, d FROM table2)
+SELECT b, d FROM cte1 JOIN cte2
+WHERE cte1.a = cte2.c;
+```
+
+----------
+# 📝 문제 풀이
+### 1. 식품분류별 가장 비싼 식품의 정보 조회하기[https://school.programmers.co.kr/learn/courses/30/lessons/131116]
+```
+SELECT A.CATEGORY, A.PRICE, A.PRODUCT_NAME
+FROM FOOD_PRODUCT A
+JOIN (
+    SELECT CATEGORY, MAX(PRICE) AS MAX_PRICE
+    FROM FOOD_PRODUCT 
+    GROUP BY CATEGORY) B ON A.CATEGORY = B.CATEGORY AND A.PRICE = B.MAX_PRICE
+WHERE A.CATEGORY IN ('과자', '국', '김치', '식용유')
+ORDER BY PRICE DESC;
+```
+
