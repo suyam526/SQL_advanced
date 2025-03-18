@@ -9,7 +9,7 @@
 - 서브쿼리의 장점
     - 각 문들을 분리해서 볼 수 있음 (구조화된 쿼리!)
     - 복잡한 JOIN, UNION을 대체 가능
-    
+<br/>
 
 ### 15.2.15.2 : 서브쿼리로 COMPARSIONS 쓰기
 **비교 연산자로 비교**<br/>
@@ -32,7 +32,7 @@ SELECT * FROM t1 AS t
   WHERE 2 = (SELECT COUNT(*) FROM t1 WHERE t1.id = t.id);
 ```
 테이블 중 하나에 대한 집계가 필요하므로 조인으로는 불가능
-
+<br/>
 
 ### 15.2.15.3 : ANY, IN or SOME
 ```
@@ -56,7 +56,7 @@ SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
         - SQL 구문에서 "a is not equal to any b"는 "a와 같은 b는 하나도 없다"는 뜻이 아니라, **"하나라도 a와 다른 b가 있다"는 뜻**이다!
         - 이런 의미를 잘 전달하려면 <>SOME(not equal SOME=일부와는 동일하지 않다)을 쓰면 됨. 보통 잘 쓰는 표현은 아니긴 하다~
 
-
+<br/>
 
 ### 15.2.15.4 : ALL
 ```operand comparison_operator ALL (subquery)```
@@ -67,13 +67,13 @@ SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
 
 - NOT IN과 <>ALL은 동의어 O
 
-
+<br/>
 
 ### 15.2.15.6 : EXISTS, NOT EXISTS
 - EXISTS 서브쿼리에서는 보통 SELECT문에 *을 쓰곤 했는데, 뭘 써도 상관없음(어차피 달라지는거 없음)
 - **중요!** EXISTS 서브쿼리에서 NULL이더라도 하나 이상의 열을 가지고 있으면 TRUE 반환 
 
-
+<br/>
 
 ### 15.2.15.10 : 서브쿼리 ERRORS
 - 1242 에러: NOT서브쿼리 비교연산자 서브쿼리 썼는데 서브쿼리에서 2개 이상의 결과를 반환했을 때 **자주 발생! 주의**
@@ -92,6 +92,7 @@ Message = "This version of MySQL doesn't yet support
 'LIMIT & IN/ALL/ANY/SOME subquery'"
     ```
 
+<br/>
 
 ----------
 ----------
@@ -114,7 +115,7 @@ WHERE day IN (
     HAVING SUM(total_bill) >= 1500
 );
 ```
-
+<br/>
 
 ----------
 # 📖 MYSQL 공식문서 정리
@@ -126,7 +127,7 @@ WITH
 SELECT b, d FROM cte1 JOIN cte2
 WHERE cte1.a = cte2.c;
 ```
-
+<br/>
 ----------
 # 📝 문제 풀이
 ### 1. 식품분류별 가장 비싼 식품의 정보 조회하기[https://school.programmers.co.kr/learn/courses/30/lessons/131116]
