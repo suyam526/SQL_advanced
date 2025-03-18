@@ -34,7 +34,29 @@ SELECT * FROM t1 AS t
 테이블 중 하나에 대한 집계가 필요하므로 조인으로는 불가능
 
 
-### 15.2.15.3
+### 15.2.15.3 : ANY, IN or SOME
+```
+operand comparison_operator ANY (subquery)
+operand IN (subquery)
+operand comparison_operator SOME (subquery)
+```
+<br/>
+
+**ANY**
+```
+SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
+```
+- 반드시 비교연산자와 함께
+    - ANY of the values in the column that the subquery returns와의 비교가 TRUE라면 TRUE를 반환
+    - t2가 NULL만 포함하고 있다면 NULL을 반환
+
+- IN과 =ANY는 동의어가 X
+- <>ANY와 <>SOME은 동의어 O
+    - <>SOME
+        - SQL 구문에서 "a is not equal to any b"는 "a와 같은 b는 하나도 없다"는 뜻이 아니라, **"하나라도 a와 다른 b가 있다"는 뜻**이다!
+        - 이런 의미를 잘 전달하려면 <>SOME(not equal SOME=일부와는 동일하지 않다)을 쓰면 됨. 보통 잘 쓰는 표현은 아니긴 하다~
+
+
 
 ### 15.2.15.4
 
