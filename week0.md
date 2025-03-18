@@ -1,4 +1,4 @@
-# MYSQL 공식문서 정리
+# 📖 MYSQL 공식문서 정리
 ## Subqueries
 ### 15.2.15
 - 서브쿼리는 다른 문에 포함될 수 있는 SELECT문 
@@ -58,9 +58,60 @@ SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
 
 
 
-### 15.2.15.4
+### 15.2.15.4 : ALL
+```operand comparison_operator ALL (subquery)```
+- ALL of the values in the column that the subquery returns이 TRUE면 TRUE를 반환
+```SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);```
+- t2가 NULL을 포함하고 있거나 비어있다면 NULL 반환
+<BR/>
 
-### 15.2.15.6
+- NOT IN과 <>ALL은 동의어 O
 
-### 15.2.15.10
+
+
+### 15.2.15.6 : EXISTS, NOT EXISTS
+- EXISTS 서브쿼리에서는 보통 SELECT문에 *을 쓰곤 했는데, 뭘 써도 상관없음(어차피 달라지는거 없음)
+- **중요!** EXISTS 서브쿼리에서 NULL이더라도 하나 이상의 열을 가지고 있으면 TRUE 반환 
+
+
+
+### 15.2.15.10 : 서브쿼리 ERRORS
+- 1242 에러: NOT서브쿼리 비교연산자 서브쿼리 썼는데 서브쿼리에서 2개 이상의 결과를 반환했을 때 **자주 발생! 주의**
+    ```
+    ERROR 1242 (ER_SUBSELECT_NO_1_ROW)
+SQLSTATE = 21000
+Message = "Subquery returns more than 1 row"
+    ```
+
+
+- not yet support 에러 : 서브쿼리에서 지원하지 않는 구문 사용했을 때
+    ```
+    ERROR 1235 (ER_NOT_SUPPORTED_YET)
+SQLSTATE = 42000
+Message = "This version of MySQL doesn't yet support
+'LIMIT & IN/ALL/ANY/SOME subquery'"
+    ```
+
+
+----------
+----------
+# 📝 문제 풀이
+### 1. 많이 주문한 테이블[https://solvesql.com/problems/find-tables-with-high-bill/]
+```
+SELECT *
+FROM tips
+WHERE total_bill > (SELECT AVG(total_bill) FROM tips)
+```
+
+### 2. 레스토랑의 대목[https://solvesql.com/problems/high-season-of-restaurant/]
+```
+SELECT *
+FROM tips
+WHERE day IN (
+    SELECT day
+    FROM tips
+    GROUP BY day
+    HAVING SUM(total_bill) >= 1500
+);
+```
 
