@@ -112,7 +112,7 @@ GROUP BY o.custid;  -- `custid`가 PK라면 `name`도 포함 가능
 -- 오류 발생 가능
 SELECT name, address, MAX(age) FROM t GROUP BY name;
 ```
-- BUT IF custid is not PK, name이 여러 개의 다른 값을 가질 수 있으므로 뭘 기준으로 어떤 name을 선택해야 할지 알 수 없음! GROUP BY에 포함되어야 SELECT문에 쓰일 수 있다<br/>
+- BUT IF custid is not PK, name이 여러 개의 다른 값을 가질 수 있으므로 **뭘 기준으로 어떤 name을 선택해야 할지 알 수 없음**! GROUP BY에 포함되어야 SELECT문에 쓰일 수 있다<br/>
 ➡️ 해결방안
     1. **GROUP BY address**
         - 같은 address를 가진 행들끼리 그룹화되므로 하나의 name만 선택 가능
@@ -128,11 +128,11 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
     - BUT ```ORDER BY age```를 하면 MYSQL은 age 값을 이용해서 name 결과값들을 정렬해야되는데, age는 DISTINCT에서 선택되지 않았으므로 어떤 값을 기준으로 정렬해야 할지 알 수 없음!!! 
     🧩 ORDER BY는 SELECT된 컬럼들만 사용 가능
 
-➡️ 해결방안
-    1. ORDER BY 컬럼을 SELECT문에 포함
-        - 다만 이 경우 DISTINCT가 name, age 조합에 대해 적용되므로 name이 중복되더라도 age 값이 다르면 중복 제거되지 않을 수도..! (=name,age 조합이 유일해야 DISTINCT로 제거됨)
-    2. GROUP BY에 해당 컬럼을 포함
-        - ```GROUP BY name``` -> 동일한 name 값을 가진 행 중에서 하나만 남김 (하지만 한 개의 값을 남긴다는 것만 확실하고, 어떤 값이 선택될지는 모름🤷‍♀️)
+➡️ 해결방안 <br/>
+1. ORDER BY 컬럼을 SELECT문에 포함
+    - 다만 이 경우 DISTINCT가 name, age 조합에 대해 적용되므로 name이 중복되더라도 age 값이 다르면 중복 제거되지 않을 수도..! (=name,age 조합이 유일해야 DISTINCT로 제거됨)
+2. GROUP BY에 해당 컬럼을 포함
+    - ```GROUP BY name``` -> 동일한 name 값을 가진 행 중에서 하나만 남김 (하지만 한 개의 값을 남긴다는 것만 확실하고, 어떤 값이 선택될지는 모름🤷‍♀️)
         - 특정 값을 남겨야된다면 ```GROUP BY MIN(age)``` OR ```GROUP BY MAX(age)``` 같은 집계 함수를 써야됨
 <br/>
 <br/>
