@@ -14,13 +14,13 @@
     ```
 
 - USING 절
-    - 두 테이블에 **공통으로 존재하는 열으로 조인**할 때 사용
+    - 두 테이블에 **공통으로 존재하는 열으로 조인**할 때 사용 <br/>
     ```a LEFT JOIN b USING (공통 컬럼)```
     =
     ```a LEFT JOIN b ON a.c1 = b.c1 AND a.c2 = b.c2 AND a.c3 = b.c3```
 
 - NATURAL JOIN
-    - 두 테이블에 공통된 컬럼을 **자동으로 찾아** 조인
+    - 두 테이블에 공통된 컬럼을 **자동으로 찾아** 조인 <br/>
     ```SELECT * FROM t1 NATURAL JOIN t2;```
     =
     ```SELECT * FROM t1 JOIN t2 USING (공통 컬럼);```
@@ -138,7 +138,7 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
 <br/>
 
 ### 표현식 사용 (MYSQL ONLY)
-- 표준 SQL과 달리 MYSQL에서는 GROUP BY절에서 표현식 ㄱㄴ
+- 표준 SQL과 달리 MYSQL에서는 GROUP BY절에서 표현식 ㄱㄴ <br/>
 ```SELECT id, FLOOR(value/100) FROM tbl_name GROUP BY id, FLOOR(value/100);```<br/>
     - 💡 FLOOR(value/100)이 SELECT문에 포함되어 있으므로 GROUP BY에서도 허용 
 ```SELECT id, FLOOR(value/100) AS val FROM tbl_name GROUP BY id, val;```
@@ -149,7 +149,7 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
 
 
 ## [HAVING절](https://dev.mysql.com/doc/refman/8.0/en/select.html)
-- GROUP BY 뒤에, ORDER BY 앞에 위치
+- GROUP BY 뒤에, ORDER BY 앞에 위치<br/>
 ```SELECT col_name FROM tbl_name WHERE col_name > 0;```
 - WHERE 대신 쓰지 말기!
     ```
