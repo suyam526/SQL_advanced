@@ -50,7 +50,9 @@
             ```SELECT * FROM employees e JOIN departments d ON e.dept_id = d.id;```<br/>
             💡 MYSQL은 더 효율적인 테이블 조인 순서를 자동으로 결정하므로 departments 테이블이 더 작은 테이블이라면 이걸 먼저 읽고 employees를 나중에 읽을 것 <br/>
             💡 하지만 STRAIGHT_JOIN을 쓰면 무조건 왼쪽에 있는 employees 테이블을 먼저 읽음
-
+<br/>
+<br/>
+<br/>
 
 # 📝 문제 풀이
 ### [1. 저자 별 카테고리 별 매출액 집계하기](https://school.programmers.co.kr/learn/courses/30/lessons/144856)
@@ -77,8 +79,10 @@ ORDER BY A.AUTHOR_ID, B.CATEGORY DESC;
 ```
 <br/>
 <br/>
-<br/>      
----------------------------
+<br/>    
+
+---
+
 <br/>
 <br/>
 <br/>
@@ -89,6 +93,8 @@ ORDER BY A.AUTHOR_ID, B.CATEGORY DESC;
 - 기본적으로 ONLY_FULL_GROUP_BY 모드 활성화
 - 🚨 GROUP BY에 포함되지 않은 비집계 컬럼이 있을 경우 오류 발생!!
     - 단, 해당 컬럼이 GROUP BY의 키 값에 의해 유일하게 결정되면 허용 (함수적 종속성)
+<br/>
+<br/>
 
 ### 함수적 종속성(Functional Dependency)
 ```
@@ -101,8 +107,6 @@ GROUP BY o.custid;  -- `custid`가 PK라면 `name`도 포함 가능
 - IF customers 테이블의 custid = 기본 키(PK), **같은 custid에 대해 name 값이 항상 동일하므로** 비집계함수인 name이 SELECT문에 있어도 ㄱㅊ <br/>
 🧩 *기본 키* = 테이블에서 각 행을 유일하게 식별할 수 있는 컬럼(또는 컬럼들의 조합)이므로 반드시 함수적 종속성이 있어야 함!
 <br/>
-<br/>
-<br/>
 
 ```
 -- 오류 발생 가능
@@ -114,7 +118,6 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
         - 같은 address를 가진 행들끼리 그룹화되므로 하나의 name만 선택 가능
     2. **ANY_VALUE(name)**
         - 같은 custid를 가진 값 중 임의의 한 개 값만 가져오게 됨
-<br/>
 <br/>
 <br/>
 
@@ -133,7 +136,6 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
         - 특정 값을 남겨야된다면 ```GROUP BY MIN(age)``` OR ```GROUP BY MAX(age)``` 같은 집계 함수를 써야됨
 <br/>
 <br/>
-<br/>
 
 ### 표현식 사용 (MYSQL ONLY)
 - 표준 SQL과 달리 MYSQL에서는 GROUP BY절에서 표현식 ㄱㄴ
@@ -141,7 +143,9 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
     - 💡 FLOOR(value/100)이 SELECT문에 포함되어 있으므로 GROUP BY에서도 허용 
 ```SELECT id, FLOOR(value/100) AS val FROM tbl_name GROUP BY id, val;```
     - 💡 별칭도 사용 가능
-
+<br/>
+<br/>
+<br/>
 
 
 ## [HAVING절](https://dev.mysql.com/doc/refman/8.0/en/select.html)
@@ -160,7 +164,7 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
 # 📝 문제 풀이
 ### [2. 언어별 개발자 분류하기](https://school.programmers.co.kr/learn/courses/30/lessons/276036)
 
-- 문제
+- 문제 <br/>
 DEVELOPERS 테이블에서 GRADE별 개발자의 정보를 조회하려 합니다. GRADE는 다음과 같이 정해집니다.
 <br/>
 <br/>
