@@ -150,5 +150,28 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
     ```
     - 단, WHERE절은 집계 함수 참조 못하지만 HAVING은 할 수 있다
 
-    
+
+# 📝 문제 풀이
+### [2. 언어별 개발자 분류하기](https://school.programmers.co.kr/learn/courses/30/lessons/276036)
+
+- 문제
+DEVELOPERS 테이블에서 GRADE별 개발자의 정보를 조회하려 합니다. GRADE는 다음과 같이 정해집니다.
+<br/>
+<br/>
+
+A : Front End 스킬과 Python 스킬을 함께 가지고 있는 개발자<br/>
+B : C# 스킬을 가진 개발자<br/>
+C : 그 외의 Front End 개발자<br/>
+GRADE가 존재하는 개발자의 GRADE, ID, EMAIL을 조회하는 SQL 문을 작성해 주세요.<br/>
+<br/>
+
+결과는 GRADE와 ID를 기준으로 오름차순 정렬해 주세요.
+<br/>
+<br/>
+
+- 정답
+```
+```
+
+
 
