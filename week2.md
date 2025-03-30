@@ -138,5 +138,17 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
 
 
 
+## [HAVING절](https://dev.mysql.com/doc/refman/8.0/en/select.html)
+- GROUP BY 뒤에, ORDER BY 앞에 위치
+```SELECT col_name FROM tbl_name WHERE col_name > 0;```
+- WHERE 대신 쓰지 말기!
+    ```
+    SELECT user, MAX(salary) 
+    FROM users
+    GROUP BY user 
+    HAVING MAX(salary) > 10;
+    ```
+    - 단, WHERE절은 집계 함수 참조 못하지만 HAVING은 할 수 있다
 
+    
 
