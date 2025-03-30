@@ -131,7 +131,7 @@ WHERE cte1.a = cte2.c;
 ----------
 
 # 📝 문제 풀이
-1. [식품분류별 가장 비싼 식품의 정보 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/131116)
+### [1. 식품분류별 가장 비싼 식품의 정보 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/131116)
 ```
 SELECT A.CATEGORY, A.PRICE, A.PRODUCT_NAME
 FROM FOOD_PRODUCT A
