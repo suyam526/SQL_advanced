@@ -123,7 +123,8 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
     1. ORDER BY 컬럼을 SELECT문에 포함
         - 다만 이 경우 DISTINCT가 name, age 조합에 대해 적용되므로 name이 중복되더라도 age 값이 다르면 중복 제거되지 않을 수도..! (=name,age 조합이 유일해야 DISTINCT로 제거됨)
     2. GROUP BY에 해당 컬럼을 포함
-        - GROUP BY name -> 동일한 name 값을 가진 행 중에서 하나만 남김 (하지만 한 개의 값을 남긴다는 것만 확실하고, 어떤 값이 선택될지는 모름..)
+        - ```GROUP BY name``` -> 동일한 name 값을 가진 행 중에서 하나만 남김 (하지만 한 개의 값을 남긴다는 것만 확실하고, 어떤 값이 선택될지는 모름🤷‍♀️)
+        - 특정 값을 남겨야된다면 ```GROUP BY MIN(age)``` OR ```GROUP BY MAX(age)``` 같은 집계 함수를 써야됨
 <br/>
 <br/>
 <br/>
