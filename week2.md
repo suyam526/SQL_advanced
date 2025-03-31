@@ -55,15 +55,15 @@
 <br/>
 
 # 📝 문제 풀이
-### [1. 저자 별 카테고리 별 매출액 집계하기](https://school.programmers.co.kr/learn/courses/30/lessons/144856)
+## [1. 저자 별 카테고리 별 매출액 집계하기](https://school.programmers.co.kr/learn/courses/30/lessons/144856)
 
-- 문제 <br/>
+### 문제 <br/>
 2022년 1월의 도서 판매 데이터를 기준으로 저자 별, 카테고리 별 매출액(TOTAL_SALES = 판매량 * 판매가) 을 구하여, 저자 ID(AUTHOR_ID), 저자명(AUTHOR_NAME), 카테고리(CATEGORY), 매출액(SALES) 리스트를 출력하는 SQL문을 작성해주세요.<br/>
 결과는 저자 ID를 오름차순으로, 저자 ID가 같다면 카테고리를 내림차순 정렬해주세요.
 <br/>
 <br/>
 
-- 정답
+### 코드
 ```
 SELECT 
     B.AUTHOR_ID,
@@ -232,7 +232,7 @@ ORDER BY GRADE, ID ASC;
 
 2. ```DEVELOPERS``` 테이블의 SKILL_CODE, ```SKILLCODES``` 테이블의 CODE 이 둘의 비트를 비교하기<br/>
     - SKILL_CODE의 비트랑 CODE의 비트 자리 하나하나를 비트연산자 &(AND)로 비교하면서 같은 자리에 1이 있으면 1 출력, 같은 자리에 1 있는 경우가 단 한번도 없으면 0 출력<br/><br/>
-    
+
 3. 이때, 콕 집어서 어떤 스킬이 있어야되는 경우 말고 'Front End' 스킬을 다 가지고 있어야 한다는 조건을 다루려면<br/>
 CODE를 모두 더해서 확인해보면 됨 -> SUM(CODE) <br/><br/>
 
