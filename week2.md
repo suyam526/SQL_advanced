@@ -162,9 +162,9 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
 
 
 # 📝 문제 풀이
-### [2. 언어별 개발자 분류하기](https://school.programmers.co.kr/learn/courses/30/lessons/276036)
+## [2. 언어별 개발자 분류하기](https://school.programmers.co.kr/learn/courses/30/lessons/276036)
 
-- 문제 <br/>
+### 문제 <br/>
 DEVELOPERS 테이블에서 GRADE별 개발자의 정보를 조회하려 합니다. GRADE는 다음과 같이 정해집니다.
 <br/>
 <br/>
@@ -178,10 +178,65 @@ GRADE가 존재하는 개발자의 GRADE, ID, EMAIL을 조회하는 SQL 문을 �
 결과는 GRADE와 ID를 기준으로 오름차순 정렬해 주세요.
 <br/>
 <br/>
+<br/>
 
-- 정답
+### 코드
 ```
+WITH CTE AS(
+    SELECT 
+        CASE 
+            WHEN SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End') > 0 
+             AND SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE NAME = 'Python') > 0 THEN 'A'
+            WHEN SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'C#') > 0 THEN 'B'
+            WHEN SKILL_CODE & (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End') > 0 THEN 'C'
+            ELSE NULL END AS GRADE,
+    ID,
+    EMAIL
+    FROM DEVELOPERS)
+
+SELECT *
+FROM CTE
+WHERE GRADE IS NOT NULL
+ORDER BY GRADE, ID ASC;
 ```
+<br/>
+<br/>
+<br/>
+
+### 문제 풀이
+> 비트연산자를 사용하는 문제! 이진수와 비트연산자만 알면 쉽게 풀 수 있음
+
+- 10진수 VS 2진수
+    - 10진수 : 0, 1, 2, ... , 9 (총 10개 숫자 사용)
+    - 2진수 : 0, 1 (총 2개 숫자 사용) <br/>
+    ![SQL5](./image/SQL5.png) <br/>
+    ![SQL6](./image/SQL6.png)
+
+- 비트와 2의 제곱수
+    - ```SKILLCODES```테이블은 CODE 값이 2의 제곱수로 이루어져 있음 <br/>
+    ![SQL7](./image/SQL7.png)
+    - EX1. 1 = 00000001 (2의 0승 자리만 1, 나머지는 0으로 표현) 
+    - EX2. 2 = 00000010 (2의 1승 자리만 1, 나머지는 0으로 표현) 
+    - 💡즉, **오직 하나의 비트만 1이며, 나머지는 0으로 표현**됨. *2의 몇 승인지에 따라 몇 번째 비트가 1로 표현되는지*가 달라짐!
+
+- SKILL_CODE를 보고 어떤 스킬이 있는지 어떻게 알지?
+    - SKILL_CODE = 400이라고 가정하면,
+    **몇 번째 자리(비트)에 1이 있는지 확인하면 2의 몇 승을 나타내는지 알 수 있음**! 
+
+<br/>
+<br/>
+
+➡️ 풀이 과정<br/>
+
+1. WITH문 사용해서 NEW 테이블 하나 만들기<br/><br/>
+
+2. ```DEVELOPERS``` 테이블의 SKILL_CODE, ```SKILLCODES``` 테이블의 CODE 이 둘의 비트를 비교하기<br/>
+    - SKILL_CODE의 비트랑 CODE의 비트 자리 하나하나를 비트연산자 &(AND)로 비교하면서 같은 자리에 1이 있으면 1 출력, 같은 자리에 1 있는 경우가 단 한번도 없으면 0 출력<br/><br/>
+    
+3. 이때, 콕 집어서 어떤 스킬이 있어야되는 경우 말고 'Front End' 스킬을 다 가지고 있어야 한다는 조건을 다루려면<br/>
+CODE를 모두 더해서 확인해보면 됨 -> SUM(CODE) <br/><br/>
+
+💡 2진수는 애초에 **같은 비트 위치에 중복이 발생할 수 없으므로**(다시 말해 2의 0제곱, 2의 1제곱 등 다 하나씩만 존재) 더한다고 해서 가지고 있는 정보값이 달라지지 않는다! 
 
 
 
