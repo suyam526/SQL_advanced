@@ -160,6 +160,9 @@ SELECT name, address, MAX(age) FROM t GROUP BY name;
     ```
     - 단, WHERE절은 집계 함수 참조 못하지만 HAVING은 할 수 있다
 
+<br/>
+<br/>
+<br/>
 
 # 📝 문제 풀이
 ## [2. 언어별 개발자 분류하기](https://school.programmers.co.kr/learn/courses/30/lessons/276036)
