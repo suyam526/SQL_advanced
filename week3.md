@@ -154,5 +154,15 @@ SELECT
 FROM TRIANGLES;
 ```
 
+<br/>
+<br/>
+
+### [2.find-customer-referee](https://leetcode.com/problems/find-customer-referee/description/)
+
+```SQL
+SELECT name
+FROM Customer
+WHERE referee_id != 2 OR referee_id IS NULL;
+```
 
 
