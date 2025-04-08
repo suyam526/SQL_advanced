@@ -1,3 +1,4 @@
+# 📖 MYSQL 공식문서 정리
 ## ✅ MySQL 흐름 제어 함수 (Flow Control Functions)
 MySQL에서 지원되는 조건에 따라 값을 반환하는 흐름 제어 함수: CASE, IF(), IFNULL(), NULLIF() 
 
@@ -135,3 +136,23 @@ SELECT NULLIF(1, 2);  -- 1
 
 - IN, BETWEEN 등은 행(row) 비교도 지원됨:
     - (a, b) IN ((1, 2), (3, 4))
+
+-------
+-------
+# 📝 문제 풀이
+
+## [1.삼각형 종류 분류하기](https://www.hackerrank.com/challenges/what-type-of-triangle/problem)
+
+```SQL
+SELECT 
+  CASE 
+    WHEN A + B <= C OR A + C <= B OR B + C <= A THEN 'Not A Triangle'
+    WHEN A = B AND B = C THEN 'Equilateral'
+    WHEN A = B OR A = C OR B = C THEN 'Isosceles'
+    ELSE 'Scalene'
+  END AS TriangleType
+FROM TRIANGLES;
+```
+
+
+
