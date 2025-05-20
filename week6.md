@@ -64,7 +64,13 @@ ORDER BY
   order_month;
 ```
 ### 문제 풀이
-
+1. 테이블 JOIN해서 금액 계산 (JOIN KEY: order_id)
+2. 월 단위로 그룹핑<BR/>
+    이때 MYSQL이랑은 다르게 strftime()을 사용해서 YYYY-MM 형식 추출해야됨
+3. 취소가 아닌 주문 금액 계산하기 (C로 시작하지 않는 주문만 필터링해서 계산, 간단하니까 LIKE 사용)<br/>
+    ```CASE WHEN ~ NOT LIKE 'C%' THEN ~ ELSE 0 END```
+4. 취소 주문 금액 계산하기 (음수로 표시해야됨!)
+5. 취소 금액 + 정상 주문 = 총 합계 계산 끗~
 
 ----
 
